@@ -61,33 +61,22 @@
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.25rem;
         }
 
         .badge-box {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            background: #04101e;
-            border: 1px solid var(--border-subtle);
-            padding: 0.4rem 0.8rem;
-            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 0.35rem 0.85rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease;
         }
 
-        .badge-title {
-            font-size: 0.75rem;
-            font-weight: 900;
-            letter-spacing: 0.05em;
-            color: #fff;
-            display: block;
-        }
-
-        .badge-sub {
-            font-size: 0.65rem;
-            color: var(--cyan-accent);
-            text-transform: uppercase;
-            font-weight: 600;
-            display: block;
+        .badge-box:hover {
+            transform: scale(1.02);
         }
 
         .contact-pill-bar {
@@ -567,14 +556,9 @@
     <header class="header-bar">
         <div class="header-container">
             <div class="logos-wrapper">
-                <!-- LOGO COLPSIC (logocolpsic.png) -->
+                <!-- LOGO COLPSIC ÚNICO Y CONTRASTADO SOBRE CÁPSULA BLANCA LIMPIA -->
                 <div class="badge-box">
-                    <img src="logocolpsic.png" alt="Logo Colpsic" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'; document.getElementById('colpsic-fallback').style.display='block';">
-                    <div id="colpsic-fallback" style="display:none; font-weight:900; color:#00bcd4; font-size:1.1rem; padding: 0 4px;">COLPSIC</div>
-                    <div>
-                        <span class="badge-title">COLPSIC</span>
-                        <span class="badge-sub">Psicología Social y Comunitaria</span>
-                    </div>
+                    <img src="logocolpsic.png" alt="Logo Colpsic - Colegio Colombiano de Psicólogos" style="height: 48px; max-width: 220px; width: auto; object-fit: contain; display: block;" onerror="this.parentElement.innerHTML='<span style=\'color:#025178;font-weight:900;font-size:1rem;letter-spacing:0.04em;\'>COLPSIC</span>';">
                 </div>
 
                 <!-- REDES SOCIALES Y CONTACTO SIEMPRE VISIBLES -->
