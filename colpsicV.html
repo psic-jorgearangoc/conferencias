@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V Simposio Internacional - Desafiando el Asistencialismo en la Salud Mental Comunitaria</title>
+    <style>
+        /* RESET & BASE AUTÓNOMA */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-dark: #051424;
+            --bg-card: rgba(10, 31, 56, 0.92);
+            --bg-card-alt: #0a213b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --cyan-accent: #00bcd4;
+            --cyan-glow: rgba(0, 188, 212, 0.25);
+            --emerald-accent: #10b981;
+            --rose-accent: #f43f5e;
+            --amber-accent: #f59e0b;
+            --border-subtle: rgba(56, 189, 248, 0.2);
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER & LOGOS */
+        .header-bar {
+            background-color: #081e36;
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logos-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .badge-box {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #04101e;
+            border: 1px solid var(--border-subtle);
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+        }
+
+        .badge-title {
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            color: #fff;
+            display: block;
+        }
+
+        .badge-sub {
+            font-size: 0.65rem;
+            color: var(--cyan-accent);
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+        }
+
+        .contact-pill-bar {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            background: rgba(0, 188, 212, 0.08);
+            border: 1px solid rgba(0, 188, 212, 0.25);
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--cyan-accent);
+        }
+
+        .contact-item strong {
+            color: var(--amber-accent);
+        }
+
+        .simposio-tag {
+            background: rgba(0, 188, 212, 0.12);
+            color: var(--cyan-accent);
+            border: 1px solid rgba(0, 188, 212, 0.3);
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+
+        .simposio-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 4rem 1.5rem 3rem;
+            text-align: center;
+            background: radial-gradient(circle at 50% 20%, #0d3257 0%, var(--bg-dark) 75%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .hero-pill {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #fde68a;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            padding: 0.3rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4.5vw, 3.6rem);
+            font-weight: 900;
+            line-height: 1.15;
+            color: #ffffff;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .hero-highlight {
+            color: var(--cyan-accent);
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.45rem);
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+            font-weight: 300;
+        }
+
+        .hero-subtitle strong {
+            color: #fff;
+            text-decoration: underline;
+            text-decoration-color: var(--cyan-accent);
+            text-underline-offset: 4px;
+        }
+
+        /* SPEAKER CARD */
+        .speaker-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem 1.75rem;
+            max-width: 650px;
+            margin: 2.5rem auto 0;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .avatar-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0284c7, #10b981);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 900;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+        }
+
+        .speaker-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.15rem;
+        }
+
+        .speaker-role {
+            font-size: 0.82rem;
+            color: var(--cyan-accent);
+            font-weight: 600;
+        }
+
+        .speaker-inst {
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-top: 0.2rem;
+        }
+
+        /* LAYOUT MAIN */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        /* CARDS & PANELS */
+        .content-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .grid-split {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (min-width: 900px) {
+            .grid-split {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .tag-pill {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .tag-danger {
+            background: rgba(244, 63, 94, 0.15);
+            color: #fda4af;
+            border: 1px solid rgba(244, 63, 94, 0.35);
+        }
+
+        .tag-info {
+            background: rgba(0, 188, 212, 0.15);
+            color: #67e8f9;
+            border: 1px solid rgba(0, 188, 212, 0.35);
+        }
+
+        .panel-heading {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        .alert-box {
+            background: #06182c;
+            border-left: 4px solid var(--rose-accent);
+            padding: 1rem 1.2rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            color: #e2e8f0;
+        }
+
+        /* NATIVE METRICS / BARS (SIN LIBRERÍAS EXTERNAS) */
+        .chart-box-native {
+            background: #04101e;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .chart-title-native {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--cyan-accent);
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.05em;
+        }
+
+        .bar-group {
+            margin-bottom: 1.15rem;
+        }
+
+        .bar-label-wrap {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 0.35rem;
+            color: #cbd5e1;
+        }
+
+        .bar-track {
+            height: 12px;
+            background: #0a2544;
+            border-radius: 999px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .bar-fill-danger {
+            background: linear-gradient(90deg, #f43f5e, #e11d48);
+            border-radius: 999px;
+            height: 100%;
+        }
+
+        .bar-fill-success {
+            background: linear-gradient(90deg, #10b981, #059669);
+            border-radius: 999px;
+            height: 100%;
+        }
+
+        /* AUTHORS 4-GRID */
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .author-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top: 4px solid var(--cyan-accent);
+        }
+
+        .author-card:nth-child(2) { border-top-color: var(--amber-accent); }
+        .author-card:nth-child(3) { border-top-color: var(--emerald-accent); }
+        .author-card:nth-child(4) { border-top-color: #a855f7; }
+
+        .author-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+
+        .author-name {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .author-concept {
+            font-size: 0.75rem;
+            color: var(--cyan-accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-desc {
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .author-ref {
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* PARADIGM COMPARISON TABLE/BOX */
+        .paradigm-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .paradigm-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .box-paradigm {
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+
+        .box-assistential {
+            background: rgba(244, 63, 94, 0.08);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+        }
+
+        .box-emancipatory {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .paradigm-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .list-paradigm {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            font-size: 0.82rem;
+        }
+
+        .list-paradigm li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        /* INTERACTIVE THESIS GENERATOR */
+        .btn-action {
+            background: #0284c7;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn-action:hover {
+            background: #0369a1;
+            transform: translateY(-2px);
+        }
+
+        .btn-rose { background: #be123c; }
+        .btn-rose:hover { background: #9f1239; }
+
+        .btn-emerald { background: #059669; }
+        .btn-emerald:hover { background: #047857; }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .output-box {
+            background: #04101e;
+            border: 1px solid rgba(0, 188, 212, 0.3);
+            border-radius: 14px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+            text-align: left;
+            font-size: 0.88rem;
+            color: #e2e8f0;
+            display: none;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #030d17;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA SUPERIOR TOTALMENTE NATIVA CON LOGO COLPSIC Y CONTACTO PERMANENTE -->
+    <header class="header-bar">
+        <div class="header-container">
+            <div class="logos-wrapper">
+                <!-- LOGO COLPSIC (logocolpsic.jpeg) -->
+                <div class="badge-box">
+                    <img src="logocolpsic.jpeg" alt="Logo Colpsic" style="height: 38px; width: auto; object-fit: contain;" onerror="this.style.display='none'; document.getElementById('colpsic-fallback').style.display='block';">
+                    <div id="colpsic-fallback" style="display:none; font-weight:900; color:#00bcd4; font-size:1.1rem; padding: 0 4px;">COLPSIC</div>
+                    <div>
+                        <span class="badge-title">COLPSIC</span>
+                        <span class="badge-sub">Psicología Social y Comunitaria</span>
+                    </div>
+                </div>
+
+                <!-- REDES SOCIALES Y CONTACTO SIEMPRE VISIBLES -->
+                <div class="contact-pill-bar">
+                    <a href="https://instagram.com/jorge.arangoc" target="_blank" rel="noopener noreferrer" class="contact-item">
+                        <span>📸</span> <strong>IG:</strong> @jorge.arangoc
+                    </a>
+                    <span style="color: rgba(255,255,255,0.2);">|</span>
+                    <a href="mailto:psic@jorgearangoc.com" class="contact-item">
+                        <span>✉️</span> <strong>Email:</strong> psic@jorgearangoc.com
+                    </a>
+                    <span style="color: rgba(255,255,255,0.2);">|</span>
+                    <a href="tel:3233796547" class="contact-item">
+                        <span>📞</span> <strong>Cel:</strong> 3233796547
+                    </a>
+                </div>
+            </div>
+
+            <div style="text-align: right;">
+                <span class="simposio-tag">V Simposio Internacional Colpsic</span>
+                <p class="simposio-sub">Reconstrucción del Tejido Social frente al Trauma Colectivo</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <span class="hero-pill">⚡ Postura Magistral del Ponente</span>
+        <h1>
+            «El asistencialismo consuela,
+            <span class="hero-highlight">pero no reconstruye.»</span>
+        </h1>
+        <p class="hero-subtitle">
+            La salud mental comunitaria empieza exactamente <strong>donde termina la dependencia</strong>.
+        </p>
+
+        <!-- TARJETA DEL CONFERENCISTA -->
+        <div class="speaker-card">
+            <div class="avatar-circle">JA</div>
+            <div style="flex-grow: 1;">
+                <h3 class="speaker-name">Jorge Arango Castaño</h3>
+                <p class="speaker-role">Psicólogo · Magíster en Dirección y Gestión de Proyectos</p>
+                <p class="speaker-inst" style="color: #67e8f9; font-weight: 600;">Director de Proyectos EMCOTIC S.A.S</p>
+                <p class="speaker-inst">Terapeuta experto en propósito y proyectos de vida</p>
+                <p class="speaker-inst" style="color: #fde68a; font-weight: 600;">Subdirector Nacional del Campo Psicología Social y Comunitaria — Colpsic</p>
+                
+                <!-- CONTACTO EN TARJETA -->
+                <div style="margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-wrap: wrap; gap: 0.85rem; font-size: 0.78rem;">
+                    <span>📷 <strong style="color: #cbd5e1;">IG:</strong> <a href="https://instagram.com/jorge.arangoc" target="_blank" style="color: var(--cyan-accent); text-decoration: none;">@jorge.arangoc</a></span>
+                    <span>✉️ <strong style="color: #cbd5e1;">Email:</strong> <a href="mailto:psic@jorgearangoc.com" style="color: var(--cyan-accent); text-decoration: none;">psic@jorgearangoc.com</a></span>
+                    <span>📱 <strong style="color: #cbd5e1;">Cel / WA:</strong> <a href="tel:3233796547" style="color: var(--cyan-accent); text-decoration: none;">3233796547</a></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENIDO CENTRAL -->
+    <main class="container">
+
+        <!-- PANEL 1: LA INDUSTRIA DEL CONSUELO Y COMPARATIVA NATIVA -->
+        <section class="content-panel">
+            <div class="grid-split">
+                <div>
+                    <span class="tag-pill tag-danger">La Paradoja de las Zonas de Influencia</span>
+                    <h2 class="panel-heading">La captura corporativa: ¿A quién beneficia que nada cambie?</h2>
+                    <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 1rem;">
+                        Durante décadas, empresas extractivas, consorcios y ONGs han cooptado los mismos territorios. Celebran aniversarios y publican memorias de sostenibilidad con fotos emotivas, pero los índices de miseria, trauma y desamparo institucional permanecen estancados.
+                    </p>
+                    <div class="alert-box">
+                        <strong>Premisa Crítica:</strong> Si una institución o proyecto lleva 20 años en una misma zona y la comunidad sigue necesitando la misma ayuda, <strong>el proyecto no resuelve la precariedad: se alimenta de ella para justificar facturación y salarios.</strong>
+                    </div>
+                </div>
+
+                <!-- BARRAS NATIVAS DE DISTRIBUCIÓN DE RECURSOS -->
+                <div class="chart-box-native">
+                    <div class="chart-title-native">Distribución de Recursos en 25 Años de Proyectos</div>
+                    
+                    <div class="bar-group">
+                        <div class="bar-label-wrap">
+                            <span>Burocracia, Nómina y Consultoría Asistencial</span>
+                            <span style="color: #f43f5e; font-weight: bold;">75%</span>
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-fill-danger" style="width: 75%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bar-group">
+                        <div class="bar-label-wrap">
+                            <span>Talleres de "Resiliencia" Pasiva (Mitigación)</span>
+                            <span style="color: #f43f5e; font-weight: bold;">15%</span>
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-fill-danger" style="width: 15%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bar-group">
+                        <div class="bar-label-wrap">
+                            <span>Capacidad Productiva y Tejido Autónomo</span>
+                            <span style="color: #10b981; font-weight: bold;">7%</span>
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-fill-success" style="width: 7%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bar-group">
+                        <div class="bar-label-wrap">
+                            <span>Infraestructura y Soberanía Comunitaria Real</span>
+                            <span style="color: #10b981; font-weight: bold;">3%</span>
+                        </div>
+                        <div class="bar-track">
+                            <div class="bar-fill-success" style="width: 3%;"></div>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.72rem; color: #94a3b8; text-align: center; margin-top: 1rem; font-style: italic;">
+                        El 90% del presupuesto asistencialista se agota en apaciguar el malestar, no en transformar las causas estructurales.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 2: SUSTENTO TEÓRICO RIGUROSO -->
+        <section class="content-panel">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 1.5rem;">
+                <span class="tag-pill tag-info">Bases Teóricas Emancipadoras</span>
+                <h2 class="panel-heading" style="margin-bottom: 0.5rem;">Rompiendo la Caridad Estéril</h2>
+                <p style="color: #94a3b8; font-size: 0.85rem;">Cuatro pilares conceptuales para superar la domesticación salarial de la psicología comunitaria.</p>
+            </div>
+
+            <div class="authors-grid">
+                <!-- Martín-Baró -->
+                <div class="author-card">
+                    <div>
+                        <div class="author-badge">IM</div>
+                        <h3 class="author-name">Ignacio Martín-Baró</h3>
+                        <p class="author-concept">Psicología de la Liberación</p>
+                        <p class="author-desc">
+                            El trauma no se cura adaptando al individuo al opresor. La salud mental se conquista desideologizando la realidad y recuperando la memoria histórica del pueblo.
+                        </p>
+                    </div>
+                    <div class="author-ref">Ref: Hacia una psicología de la liberación (1986).</div>
+                </div>
+
+                <!-- Paulo Freire -->
+                <div class="author-card">
+                    <div>
+                        <div class="author-badge" style="color: var(--amber-accent);">PF</div>
+                        <h3 class="author-name">Paulo Freire</h3>
+                        <p class="author-concept" style="color: var(--amber-accent);">Pedagogía Crítica</p>
+                        <p class="author-desc">
+                            El asistencialismo roba la condición de sujeto histórico. Toda ayuda externa que no fomente la autogestión dialógica profundiza la dominación y la sumisión pasiva.
+                        </p>
+                    </div>
+                    <div class="author-ref">Ref: Pedagogía del oprimido (1970).</div>
+                </div>
+
+                <!-- Maritza Montero -->
+                <div class="author-card">
+                    <div>
+                        <div class="author-badge" style="color: var(--emerald-accent);">MM</div>
+                        <h3 class="author-name">Maritza Montero</h3>
+                        <p class="author-concept" style="color: var(--emerald-accent);">Fortalecimiento Comunitario</p>
+                        <p class="author-desc">
+                            Desnaturalizar la precariedad. El psicólogo no es un salvador ni un técnico de planilla; es un catalizador para que el colectivo asuma el dominio sobre sus destinos.
+                        </p>
+                    </div>
+                    <div class="author-ref">Ref: Teoría y práctica de la psicología comunitaria (2003).</div>
+                </div>
+
+                <!-- Julian Rappaport -->
+                <div class="author-card">
+                    <div>
+                        <div class="author-badge" style="color: #c084fc;">JR</div>
+                        <h3 class="author-name">Julian Rappaport</h3>
+                        <p class="author-concept" style="color: #c084fc;">Empowerment vs Prevención</p>
+                        <p class="author-desc">
+                            Prevenir sin transferir poder político es retórica vacía. La salud comunitaria florece cuando la gente tiene acceso real a los recursos y a la toma de decisiones.
+                        </p>
+                    </div>
+                    <div class="author-ref">Ref: In praise of paradox (1981).</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 3: CONTRASTE DE PARADIGMAS -->
+        <section class="content-panel">
+            <h2 class="panel-heading" style="text-align: center;">Matriz de Transformación Operativa</h2>
+            <div class="paradigm-grid">
+                
+                <div class="box-paradigm box-assistential">
+                    <div class="paradigm-title" style="color: #fda4af;">
+                        <span style="font-size: 1.2rem;">✕</span> El Modelo de la Dependencia
+                    </div>
+                    <ul class="list-paradigm" style="color: #cbd5e1;">
+                        <li><strong>• Población "Beneficiaria":</strong> Definida por sus carencias, reducida a firmar planillas para justificar refrigerios.</li>
+                        <li><strong>• El Profesional Cautivo:</strong> Sometido a ciclos contractuales de tres meses donde está prohibido incomodar al financiador.</li>
+                        <li><strong>• Terapia del Apaciguamiento:</strong> Talleres de "resiliencia" diseñados para aguantar la opresión sin rebelarse.</li>
+                        <li><strong>• Perpetuación Histórica:</strong> 20 años de intervención y el territorio sigue sumido en el mismo dolor.</li>
+                    </ul>
+                </div>
+
+                <div class="box-paradigm box-emancipatory">
+                    <div class="paradigm-title" style="color: #6ee7b7;">
+                        <span style="font-size: 1.2rem;">✓</span> El Modelo de la Soberanía Mental
+                    </div>
+                    <ul class="list-paradigm" style="color: #cbd5e1;">
+                        <li><strong>• Sujetos Políticos Activos:</strong> Diseñadores y decisores de su territorio con exigibilidad de derechos.</li>
+                        <li><strong>• El Psicólogo Prescindible:</strong> Trabaja desde el día uno para que la comunidad pueda gobernarse sin él.</li>
+                        <li><strong>• Reconstrucción Estructural:</strong> El trauma colectivo se sana con trabajo digno, memoria viva y justicia social.</li>
+                        <li><strong>• Autonomía Conquistada:</strong> Emancipación del subsidio y poder popular arraigado.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PANEL 4: GENERADOR DE TESIS CON INTELIGENCIA ARTIFICIAL -->
+        <section class="content-panel" style="text-align: center;">
+            <span class="tag-pill tag-info">Herramienta Interactiva para el Plenario</span>
+            <h2 class="panel-heading" style="margin-bottom: 0.5rem;">Generador de Tesis Críticas para el Simposio</h2>
+            <p style="color: #94a3b8; font-size: 0.85rem; max-width: 600px; margin: 0 auto;">
+                Acciona los botones para generar argumentos teóricos precisos que respalden tus intervenciones en el debate del evento.
+            </p>
+
+            <div class="btn-group">
+                <button class="btn-action" onclick="ejecutarTesis('trauma')">Tesis: Trauma vs Asistencialismo</button>
+                <button class="btn-action btn-rose" onclick="ejecutarTesis('empresas')">Tesis: Captura Territorial y RSE</button>
+                <button class="btn-action btn-emerald" onclick="ejecutarTesis('prescindible')">Tesis: El Psicólogo Prescindible</button>
+            </div>
+
+            <div id="aiStatus" style="display: none; margin-top: 1.5rem; font-size: 0.85rem; color: var(--cyan-accent);">
+                Elaborando tesis epistemológica con rigor crítico...
+            </div>
+
+            <div id="aiResult" class="output-box"></div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p><strong>Colegio Colombiano de Psicólogos (Colpsic)</strong></p>
+        <p style="margin-top: 0.3rem;">V Simposio Internacional del Campo Psicología Social y Comunitaria · Ponencia de <strong>Jorge Arango Castaño</strong></p>
+        <div style="margin-top: 0.85rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem;">
+            <span>📸 Instagram: <a href="https://instagram.com/jorge.arangoc" target="_blank" style="color: var(--cyan-accent); text-decoration: none;">@jorge.arangoc</a></span>
+            <span>✉️ Correo: <a href="mailto:psic@jorgearangoc.com" style="color: var(--cyan-accent); text-decoration: none;">psic@jorgearangoc.com</a></span>
+            <span>📱 Celular / WhatsApp: <a href="tel:3233796547" style="color: var(--cyan-accent); text-decoration: none;">3233796547</a></span>
+        </div>
+    </footer>
+
+    <!-- LÓGICA DE INTERACCIÓN NATIVA (SIN DEPENDENCIAS EXTERNAS) -->
+    <script>
+        async function ejecutarTesis(tipo) {
+            const status = document.getElementById('aiStatus');
+            const result = document.getElementById('aiResult');
+
+            status.style.display = 'block';
+            result.style.display = 'none';
+            result.innerHTML = '';
+
+            let promptTexto = '';
+            if (tipo === 'trauma') {
+                promptTexto = 'Genera un argumento contundente y académico de 70 palabras para la conferencia de Jorge Arango Castaño en el Simposio de Colpsic, explicando por qué tratar el trauma colectivo con asistencialismo es un anestésico inútil si no se devuelve la dignidad y la capacidad de agencia política a la comunidad.';
+            } else if (tipo === 'empresas') {
+                promptTexto = 'Elabora una reflexión crítica y formal de 70 palabras sobre por qué las empresas que pasan décadas en la misma zona de influencia con programas de bajo impacto perpetúan la dependencia en lugar de reconstruir el tejido social. Cita a Martín-Baró o Freire.';
+            } else {
+                promptTexto = 'Explica en 70 palabras la premisa: "La salud mental comunitaria empieza donde termina la dependencia". Enfócalo en la necesidad de que el psicólogo comunitario trabaje con el objetivo ético de volverse prescindible para la comunidad.';
+            }
+
+            try {
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: promptTexto }] }],
+                        systemInstruction: {
+                            parts: [{ text: 'Eres un experto asesor en psicología social y comunitaria latinoamericana, crítico del asistencialismo, riguroso, elocuente y con enfoque en emancipación y soberanía popular.' }]
+                        }
+                    })
+                });
+
+                const data = await response.json();
+                const texto = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No se pudo generar la tesis en este momento.';
+
+                result.innerHTML = `
+                    <div style="font-size: 0.75rem; font-weight: 800; color: #f59e0b; text-transform: uppercase; margin-bottom: 0.4rem;">
+                        ⚡ Argumento Magistral para el Plenario:
+                    </div>
+                    <p style="font-style: italic; line-height: 1.6;">${texto}</p>
+                `;
+                result.style.display = 'block';
+            } catch (e) {
+                result.innerHTML = '<span style="color: #f43f5e;">Hubo una interrupción en el servicio de generación. Intenta nuevamente.</span>';
+                result.style.display = 'block';
+            } finally {
+                status.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
