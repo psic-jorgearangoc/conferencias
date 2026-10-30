@@ -60,6 +60,7 @@
         .logos-wrapper {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
             gap: 1rem;
         }
 
@@ -186,51 +187,70 @@
             text-underline-offset: 4px;
         }
 
-        /* SPEAKER CARD */
+        /* SPEAKER CARD CON FOTO JAC.PNG */
         .speaker-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: 16px;
-            padding: 1.25rem 1.75rem;
-            max-width: 650px;
+            padding: 1.5rem;
+            max-width: 720px;
             margin: 2.5rem auto 0;
             display: flex;
             align-items: center;
-            gap: 1.25rem;
+            gap: 1.5rem;
             text-align: left;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
-        .avatar-circle {
-            width: 64px;
-            height: 64px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #0284c7, #10b981);
-            color: #fff;
+        @media (max-width: 600px) {
+            .speaker-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .speaker-photo-wrap {
+            width: 100px;
+            height: 100px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--cyan-accent);
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+            flex-shrink: 0;
+            background: #081e36;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
+        }
+
+        .speaker-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .speaker-photo-fallback {
+            font-size: 2rem;
             font-weight: 900;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+            color: var(--cyan-accent);
+            display: none;
         }
 
         .speaker-name {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: #fff;
-            margin-bottom: 0.15rem;
+            margin-bottom: 0.2rem;
         }
 
         .speaker-role {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             color: var(--cyan-accent);
             font-weight: 600;
         }
 
         .speaker-inst {
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             color: #cbd5e1;
             margin-top: 0.2rem;
         }
@@ -308,7 +328,7 @@
             color: #e2e8f0;
         }
 
-        /* NATIVE METRICS / BARS (SIN LIBRERÍAS EXTERNAS) */
+        /* BARRAS NATIVAS */
         .chart-box-native {
             background: #04101e;
             border: 1px solid rgba(255,255,255,0.08);
@@ -422,7 +442,7 @@
             font-style: italic;
         }
 
-        /* PARADIGM COMPARISON TABLE/BOX */
+        /* PARADIGM COMPARISON TABLE */
         .paradigm-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -474,49 +494,60 @@
             gap: 0.5rem;
         }
 
-        /* INTERACTIVE THESIS GENERATOR */
+        /* INTERACTIVE THESIS GENERATOR - MOTOR NATIVO */
         .btn-action {
             background: #0284c7;
             color: #fff;
-            border: none;
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 10px;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.82rem;
+            padding: 0.85rem 1.4rem;
+            font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             font-family: inherit;
         }
 
         .btn-action:hover {
             background: #0369a1;
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+        }
+
+        .btn-action.active {
+            outline: 2px solid var(--amber-accent);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
         }
 
         .btn-rose { background: #be123c; }
-        .btn-rose:hover { background: #9f1239; }
+        .btn-rose:hover { background: #9f1239; box-shadow: 0 6px 16px rgba(190, 18, 60, 0.35); }
 
         .btn-emerald { background: #059669; }
-        .btn-emerald:hover { background: #047857; }
+        .btn-emerald:hover { background: #047857; box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35); }
 
         .btn-group {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 0.85rem;
             margin-top: 1.5rem;
         }
 
         .output-box {
             background: #04101e;
-            border: 1px solid rgba(0, 188, 212, 0.3);
+            border: 1px solid rgba(0, 188, 212, 0.4);
             border-radius: 14px;
-            padding: 1.25rem;
+            padding: 1.5rem;
             margin-top: 1.5rem;
             text-align: left;
-            font-size: 0.88rem;
+            font-size: 0.92rem;
             color: #e2e8f0;
-            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* FOOTER */
@@ -532,13 +563,13 @@
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR TOTALMENTE NATIVA CON LOGO COLPSIC Y CONTACTO PERMANENTE -->
+    <!-- BARRA SUPERIOR TOTALMENTE NATIVA CON LOGO COLPSIC (logocolpsic.png) Y CONTACTO -->
     <header class="header-bar">
         <div class="header-container">
             <div class="logos-wrapper">
-                <!-- LOGO COLPSIC (logocolpsic.jpeg) -->
+                <!-- LOGO COLPSIC (logocolpsic.png) -->
                 <div class="badge-box">
-                    <img src="logocolpsic.jpeg" alt="Logo Colpsic" style="height: 38px; width: auto; object-fit: contain;" onerror="this.style.display='none'; document.getElementById('colpsic-fallback').style.display='block';">
+                    <img src="logocolpsic.png" alt="Logo Colpsic" style="height: 40px; width: auto; object-fit: contain;" onerror="this.style.display='none'; document.getElementById('colpsic-fallback').style.display='block';">
                     <div id="colpsic-fallback" style="display:none; font-weight:900; color:#00bcd4; font-size:1.1rem; padding: 0 4px;">COLPSIC</div>
                     <div>
                         <span class="badge-title">COLPSIC</span>
@@ -580,9 +611,12 @@
             La salud mental comunitaria empieza exactamente <strong>donde termina la dependencia</strong>.
         </p>
 
-        <!-- TARJETA DEL CONFERENCISTA -->
+        <!-- TARJETA DEL CONFERENCISTA CON jac.png -->
         <div class="speaker-card">
-            <div class="avatar-circle">JA</div>
+            <div class="speaker-photo-wrap">
+                <img src="jac.png" alt="Jorge Arango Castaño" class="speaker-photo" onerror="this.style.display='none'; document.getElementById('jac-fallback').style.display='block';">
+                <div id="jac-fallback" class="speaker-photo-fallback">JA</div>
+            </div>
             <div style="flex-grow: 1;">
                 <h3 class="speaker-name">Jorge Arango Castaño</h3>
                 <p class="speaker-role">Psicólogo · Magíster en Dirección y Gestión de Proyectos</p>
@@ -608,7 +642,7 @@
             <div class="grid-split">
                 <div>
                     <span class="tag-pill tag-danger">La Paradoja de las Zonas de Influencia</span>
-                    <h2 class="panel-heading">La captura corporativa: ¿A quién beneficia que nada cambie?</h2>
+                    <h2 class="panel-heading">La captura territorial: ¿A quién beneficia que nada cambie?</h2>
                     <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 1rem;">
                         Durante décadas, empresas extractivas, consorcios y ONGs han cooptado los mismos territorios. Celebran aniversarios y publican memorias de sostenibilidad con fotos emotivas, pero los índices de miseria, trauma y desamparo institucional permanecen estancados.
                     </p>
@@ -754,7 +788,7 @@
                     </div>
                     <ul class="list-paradigm" style="color: #cbd5e1;">
                         <li><strong>• Sujetos Políticos Activos:</strong> Diseñadores y decisores de su territorio con exigibilidad de derechos.</li>
-                        <li><strong>• El Psicólogo Prescindible:</strong> Trabaja desde el día uno para que la comunidad pueda gobernarse sin él.</li>
+                        <li><strong>• El Psicólogo Prescindible:</strong> Trabaja con la meta ética de transferir todo el poder a la comunidad para que esta no dependa de él.</li>
                         <li><strong>• Reconstrucción Estructural:</strong> El trauma colectivo se sana con trabajo digno, memoria viva y justicia social.</li>
                         <li><strong>• Autonomía Conquistada:</strong> Emancipación del subsidio y poder popular arraigado.</li>
                     </ul>
@@ -763,25 +797,22 @@
             </div>
         </section>
 
-        <!-- PANEL 4: GENERADOR DE TESIS CON INTELIGENCIA ARTIFICIAL -->
+        <!-- PANEL 4: MOTOR DE TESIS NATIVO Y 100% FUNCIONAL -->
         <section class="content-panel" style="text-align: center;">
             <span class="tag-pill tag-info">Herramienta Interactiva para el Plenario</span>
-            <h2 class="panel-heading" style="margin-bottom: 0.5rem;">Generador de Tesis Críticas para el Simposio</h2>
-            <p style="color: #94a3b8; font-size: 0.85rem; max-width: 600px; margin: 0 auto;">
-                Acciona los botones para generar argumentos teóricos precisos que respalden tus intervenciones en el debate del evento.
+            <h2 class="panel-heading" style="margin-bottom: 0.5rem;">Caja de Herramientas Argumentativas para tu Ponencia</h2>
+            <p style="color: #94a3b8; font-size: 0.85rem; max-width: 650px; margin: 0 auto;">
+                Haz clic en cualquiera de las posturas temáticas para desplegar de inmediato la argumentación teórica, autores de respaldo y la pregunta retórica lista para el debate.
             </p>
 
             <div class="btn-group">
-                <button class="btn-action" onclick="ejecutarTesis('trauma')">Tesis: Trauma vs Asistencialismo</button>
-                <button class="btn-action btn-rose" onclick="ejecutarTesis('empresas')">Tesis: Captura Territorial y RSE</button>
-                <button class="btn-action btn-emerald" onclick="ejecutarTesis('prescindible')">Tesis: El Psicólogo Prescindible</button>
+                <button id="btn-trauma" class="btn-action" onclick="mostrarTesis('trauma')">1. Trauma Colectivo vs Asistencialismo</button>
+                <button id="btn-empresas" class="btn-action btn-rose" onclick="mostrarTesis('empresas')">2. Captura Territorial y RSE Extractiva</button>
+                <button id="btn-prescindible" class="btn-action btn-emerald" onclick="mostrarTesis('prescindible')">3. La Ética del Psicólogo Prescindible</button>
             </div>
 
-            <div id="aiStatus" style="display: none; margin-top: 1.5rem; font-size: 0.85rem; color: var(--cyan-accent);">
-                Elaborando tesis epistemológica con rigor crítico...
-            </div>
-
-            <div id="aiResult" class="output-box"></div>
+            <!-- CONTENEDOR DE SALIDA INTERACTIVA NATIVA -->
+            <div id="aiResult" class="output-box" style="display: none;"></div>
         </section>
 
     </main>
@@ -797,57 +828,67 @@
         </div>
     </footer>
 
-    <!-- LÓGICA DE INTERACCIÓN NATIVA (SIN DEPENDENCIAS EXTERNAS) -->
+    <!-- MOTOR DE TESIS 100% NATIVO (SIN APIS EXTERNAS NI DEPENDENCIAS) -->
     <script>
-        async function ejecutarTesis(tipo) {
-            const status = document.getElementById('aiStatus');
-            const result = document.getElementById('aiResult');
-
-            status.style.display = 'block';
-            result.style.display = 'none';
-            result.innerHTML = '';
-
-            let promptTexto = '';
-            if (tipo === 'trauma') {
-                promptTexto = 'Genera un argumento contundente y académico de 70 palabras para la conferencia de Jorge Arango Castaño en el Simposio de Colpsic, explicando por qué tratar el trauma colectivo con asistencialismo es un anestésico inútil si no se devuelve la dignidad y la capacidad de agencia política a la comunidad.';
-            } else if (tipo === 'empresas') {
-                promptTexto = 'Elabora una reflexión crítica y formal de 70 palabras sobre por qué las empresas que pasan décadas en la misma zona de influencia con programas de bajo impacto perpetúan la dependencia en lugar de reconstruir el tejido social. Cita a Martín-Baró o Freire.';
-            } else {
-                promptTexto = 'Explica en 70 palabras la premisa: "La salud mental comunitaria empieza donde termina la dependencia". Enfócalo en la necesidad de que el psicólogo comunitario trabaje con el objetivo ético de volverse prescindible para la comunidad.';
+        const bancoDeTesis = {
+            trauma: {
+                titulo: "Tesis 1: El Trauma Colectivo no se Resuelve con Anestesia Emocional",
+                autor: "Ignacio Martín-Baró (1986) & Paulo Freire (1970)",
+                argumento: "Abordar el trauma psicosocial mediante paquetes de ayuda asistencialista y talleres paliativos de 'gestión del duelo' es una forma solapada de despolitizar el sufrimiento. El trauma colectivo de una comunidad violentada o empobrecida no es una patología individual; es la huella de relaciones de poder opresivas. Mientras no se restituyan las condiciones materiales, la tierra, la justicia y la dignidad histórica, la intervención asistencialista actúa como un analgésico que calma el síntoma mientras gangrena la estructura social.",
+                discurso: "«Colegas: Si tras una década de talleres psicosociales la gente sigue sintiendo el mismo desamparo y dependiendo de la ayuda externa para sobrevivir, no hemos hecho salud mental: hemos administrado la resignación.»"
+            },
+            empresas: {
+                titulo: "Tesis 2: Las Zonas de Influencia y la Trampa de la Dependencia Corporativa",
+                autor: "Orlando Fals Borda (1987) & Maritza Montero (2004)",
+                argumento: "Muchas empresas y consorcios sostienen programas de Responsabilidad Social Empresarial (RSE) durante 20 o 30 años en los mismos territorios sin que los indicadores estructurales de pobreza o salud mental varíen un milímetro. La razón es económica y política: el asistencialismo corporativo funciona como una 'licencia social para operar' que pacifica el descontento popular y neutraliza la movilización, convirtiendo a los psicólogos en operarios de relaciones públicas pagados para apagar incendios temporales.",
+                discurso: "«No podemos aplaudir un proyecto que celebra 25 años en una vereda si esa vereda sigue sin agua potable, sin autonomía económica y con los mismos niveles de angustia colectiva. Ese proyecto no emancipa; se nutre de la vulnerabilidad para justificar presupuestos.»"
+            },
+            prescindible: {
+                titulo: "Tesis 3: La Ética del Psicólogo Prescindible y la Soberanía Mental",
+                autor: "Julian Rappaport (1981) & Maritza Montero (2003)",
+                argumento: "El 'psicólogo prescindible' es el máximo estándar ético de la disciplina comunitaria. A diferencia del modelo asistencialista donde el profesional monopoliza el saber para amarrar contratos y hacer que la comunidad dependa de su presencia, el psicólogo con enfoque emancipador diseña su intervención para transferir poder, métodos y herramientas organizativas desde el primer día. Su misión no es quedarse, sino dejar una capacidad instalada tan sólida que la comunidad sea capaz de liderar, defenderse y florecer sin él.",
+                discurso: "«Nuestra mayor victoria como psicólogos sociales no es que una comunidad nos aplauda año tras año; es el día en que la comunidad nos dice con orgullo: 'Gracias, doctor, pero ahora podemos gobernarnos solos'. Ahí empieza la verdadera salud mental comunitaria.»"
             }
+        };
 
-            try {
-                const apiKey = "";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+        function mostrarTesis(tipo) {
+            const resultBox = document.getElementById('aiResult');
+            const data = bancoDeTesis[tipo];
 
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: promptTexto }] }],
-                        systemInstruction: {
-                            parts: [{ text: 'Eres un experto asesor en psicología social y comunitaria latinoamericana, crítico del asistencialismo, riguroso, elocuente y con enfoque en emancipación y soberanía popular.' }]
-                        }
-                    })
-                });
+            // Resaltar botón activo
+            document.querySelectorAll('.btn-action').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.getElementById('btn-' + tipo);
+            if (activeBtn) activeBtn.classList.add('active');
 
-                const data = await response.json();
-                const texto = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No se pudo generar la tesis en este momento.';
-
-                result.innerHTML = `
-                    <div style="font-size: 0.75rem; font-weight: 800; color: #f59e0b; text-transform: uppercase; margin-bottom: 0.4rem;">
-                        ⚡ Argumento Magistral para el Plenario:
+            resultBox.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                    <span style="font-weight: 800; color: #f59e0b; font-size: 0.95rem; text-transform: uppercase;">
+                        ${data.titulo}
+                    </span>
+                    <span style="font-size: 0.75rem; color: #67e8f9; background: rgba(0, 188, 212, 0.12); padding: 0.2rem 0.6rem; border-radius: 999px;">
+                        📚 ${data.autor}
+                    </span>
+                </div>
+                <p style="margin-bottom: 1rem; color: #e2e8f0; font-size: 0.9rem; line-height: 1.6;">
+                    ${data.argumento}
+                </p>
+                <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid #10b981; padding: 0.85rem 1.1rem; border-radius: 0 8px 8px 0;">
+                    <div style="font-size: 0.72rem; text-transform: uppercase; font-weight: 800; color: #6ee7b7; margin-bottom: 0.25rem;">
+                        🎤 Frase Clave para tu Intervención en el Simposio:
                     </div>
-                    <p style="font-style: italic; line-height: 1.6;">${texto}</p>
-                `;
-                result.style.display = 'block';
-            } catch (e) {
-                result.innerHTML = '<span style="color: #f43f5e;">Hubo una interrupción en el servicio de generación. Intenta nuevamente.</span>';
-                result.style.display = 'block';
-            } finally {
-                status.style.display = 'none';
-            }
+                    <p style="font-style: italic; color: #fff; font-size: 0.88rem; margin: 0;">
+                        ${data.discurso}
+                    </p>
+                </div>
+            `;
+            resultBox.style.display = 'block';
         }
     </script>
 </body>
 </html>
+```
+
+### Resumen de las mejoras integradas:
+1. **Logo Colpsic:** Vinculado como `src="logocolpsic.png"` con un sistema de respaldo nativo si el archivo no se encuentra en la ruta.
+2. **Tu Foto (`jac.png`):** Integrada en la tarjeta del conferencista con borde iluminado, bordes redondeados y respaldo con iniciales `JA` por seguridad.
+3. **Herramienta interactiva 100% nativa:** Los tres botones ahora responden de inmediato, entregando la argumentación teórica, autores clave y las frases exactas listas para tu ponencia en el simposio.
